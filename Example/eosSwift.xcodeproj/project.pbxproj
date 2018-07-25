@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		051314FBB27BF5F52AE2AEBD /* Pods_eosSwift_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DB5F6618E8BAF19924BAE8A /* Pods_eosSwift_Example.framework */; };
 		11567FAD1D8A5ABA7D17A610 /* Pods_eosSwift_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 58A97857F5214892C0FA92C9 /* Pods_eosSwift_Tests.framework */; };
+		4471BF562108E6EB00E59C9F /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4471BF552108E6EB00E59C9F /* NetworkManager.swift */; };
 		607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD51AFB9204008FA782 /* AppDelegate.swift */; };
 		607FACD81AFB9204008FA782 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD71AFB9204008FA782 /* ViewController.swift */; };
 		607FACDB1AFB9204008FA782 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 607FACD91AFB9204008FA782 /* Main.storyboard */; };
@@ -28,9 +29,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		1C9535B1F2828F680FB26C4A /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; name = README.md; path = ../README.md; sourceTree = "<group>"; };
+		1C9535B1F2828F680FB26C4A /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		1DB5F6618E8BAF19924BAE8A /* Pods_eosSwift_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_eosSwift_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3B90351BCC291004E123561D /* Pods-eosSwift_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-eosSwift_Example.debug.xcconfig"; path = "Pods/Target Support Files/Pods-eosSwift_Example/Pods-eosSwift_Example.debug.xcconfig"; sourceTree = "<group>"; };
+		4471BF552108E6EB00E59C9F /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		58A97857F5214892C0FA92C9 /* Pods_eosSwift_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_eosSwift_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		607FACD01AFB9204008FA782 /* eosSwift_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = eosSwift_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		607FACD41AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -43,9 +45,9 @@
 		607FACEA1AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		607FACEB1AFB9204008FA782 /* Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests.swift; sourceTree = "<group>"; };
 		7590F6A4A9E4D503879694BF /* Pods-eosSwift_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-eosSwift_Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-eosSwift_Example/Pods-eosSwift_Example.release.xcconfig"; sourceTree = "<group>"; };
-		8895357F0B3EDF0741438307 /* eosSwift.podspec */ = {isa = PBXFileReference; includeInIndex = 1; name = eosSwift.podspec; path = ../eosSwift.podspec; sourceTree = "<group>"; };
+		8895357F0B3EDF0741438307 /* eosSwift.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = eosSwift.podspec; path = ../eosSwift.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		88CEF1FAB07B6759E7395DDD /* Pods-eosSwift_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-eosSwift_Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-eosSwift_Tests/Pods-eosSwift_Tests.release.xcconfig"; sourceTree = "<group>"; };
-		E8391EB496783CA92E44F66D /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
+		E8391EB496783CA92E44F66D /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		FDC247E09FF21F0559C0B06A /* Pods-eosSwift_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-eosSwift_Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-eosSwift_Tests/Pods-eosSwift_Tests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -69,6 +71,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4471BF542108E5A000E59C9F /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				4471BF572108E78600E59C9F /* Models */,
+				4471BF552108E6EB00E59C9F /* NetworkManager.swift */,
+			);
+			path = Source;
+			sourceTree = "<group>";
+		};
+		4471BF572108E78600E59C9F /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		5959B84D7B60748D58C8B0AE /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -83,6 +101,7 @@
 		607FACC71AFB9204008FA782 = {
 			isa = PBXGroup;
 			children = (
+				4471BF542108E5A000E59C9F /* Source */,
 				607FACF51AFB993E008FA782 /* Podspec Metadata */,
 				607FACD21AFB9204008FA782 /* Example for eosSwift */,
 				607FACE81AFB9204008FA782 /* Tests */,
@@ -322,6 +341,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4471BF562108E6EB00E59C9F /* NetworkManager.swift in Sources */,
 				607FACD81AFB9204008FA782 /* ViewController.swift in Sources */,
 				607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */,
 			);
