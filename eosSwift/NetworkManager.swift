@@ -9,6 +9,23 @@
 import Foundation
 import Alamofire
 
+
+struct Mapper<T: Codable> {
+    static func mapObject(res: DataResponse<Data>, completetionBlock: (T?, Error?) -> ())  {
+        if let data = res.data {
+            let decoder = JSONDecoder()
+            do {
+                let object = try decoder.decode(T.self, from: data)
+                completetionBlock(object, nil)
+            } catch {
+                completetionBlock(nil, error)
+            }
+        } else {
+            completetionBlock(nil, res.error)
+        }
+    }
+}
+
 open class NetworkManager {
     open var baseUrl: URL
     
@@ -23,7 +40,7 @@ open class NetworkManager {
     }
     
     
-    func mapObject<T: Codable>(res: DataResponse<Any>, completetionBlock: (T?, Error?) -> ())  {
+    static func mapObject<T: Codable>(res: DataResponse<Data>, completetionBlock: (T?, Error?) -> ())  {
         if let data = res.data {
             let decoder = JSONDecoder()
             do {
@@ -39,22 +56,13 @@ open class NetworkManager {
     
     func getInfo(completetionBlock: @escaping (ChainInfoModel?, Error?) -> ()) {
         manager.request(APIUrls.chainInfo, method: APIUrls.chainInfo.method()).responseData { (res) in
-            if let data = res.data {
-                let decoder = JSONDecoder()
-                do {
-                    let chain = try decoder.decode(ChainInfoModel.self, from: data)
-                    completetionBlock(chain, nil)
-                } catch {
-                    completetionBlock(nil, error)
-                }
-            } else {
-                completetionBlock(nil, res.error)
-            }
-            
+            NetworkManager.mapObject(res: res, completetionBlock: completetionBlock)
         }
     }
     
-    func getBlock(completetionBlock: (ChainInfoModel, Error?) -> ()) {
-        
+    func getBlock(completetionBlock: @escaping (ChainInfoModel?, Error?) -> ()) {
+        manager.request(APIUrls.chainInfo, method: APIUrls.chainInfo.method()).responseData { (res) in
+            Mapper<ChainInfoModel>.mapObject(res: res, completetionBlock: completetionBlock)
+        }
     }
 }
