@@ -22,8 +22,36 @@ open class NetworkManager {
         baseUrl = URL(string: stringUrl)!
     }
     
-    func getInfo(completetionBlock: (ChainInfoModel, Error?) -> ()) {
-        
+    
+    func mapObject<T: Codable>(res: DataResponse<Any>, completetionBlock: (T?, Error?) -> ())  {
+        if let data = res.data {
+            let decoder = JSONDecoder()
+            do {
+                let object = try decoder.decode(T.self, from: data)
+                completetionBlock(object, nil)
+            } catch {
+                completetionBlock(nil, error)
+            }
+        } else {
+            completetionBlock(nil, res.error)
+        }
+    }
+    
+    func getInfo(completetionBlock: @escaping (ChainInfoModel?, Error?) -> ()) {
+        manager.request(APIUrls.chainInfo, method: APIUrls.chainInfo.method()).responseData { (res) in
+            if let data = res.data {
+                let decoder = JSONDecoder()
+                do {
+                    let chain = try decoder.decode(ChainInfoModel.self, from: data)
+                    completetionBlock(chain, nil)
+                } catch {
+                    completetionBlock(nil, error)
+                }
+            } else {
+                completetionBlock(nil, res.error)
+            }
+            
+        }
     }
     
     func getBlock(completetionBlock: (ChainInfoModel, Error?) -> ()) {
