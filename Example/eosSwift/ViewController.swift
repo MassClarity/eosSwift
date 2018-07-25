@@ -12,6 +12,10 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        NetworkManager(stringUrl: "http://domain.com").getInfo { (info, _) in
+            debugPrint(info?.chain_id)
+        }
         // Do any additional setup after loading the view, typically from a nib.
     }
 

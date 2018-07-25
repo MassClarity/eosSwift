@@ -40,6 +40,10 @@ open class NetworkManager {
     }
     
     
+    func serverUrl(url: APIUrls) -> URL {
+        return URL(string: baseUrl.absoluteString + url.stringUrl())!
+    }
+    
     static func mapObject<T: Codable>(res: DataResponse<Data>, completetionBlock: (T?, Error?) -> ())  {
         if let data = res.data {
             let decoder = JSONDecoder()
@@ -54,14 +58,14 @@ open class NetworkManager {
         }
     }
     
-    func getInfo(completetionBlock: @escaping (ChainInfoModel?, Error?) -> ()) {
-        manager.request(APIUrls.chainInfo, method: APIUrls.chainInfo.method()).responseData { (res) in
+    public func getInfo(completetionBlock: @escaping (ChainInfoModel?, Error?) -> ()) {
+        manager.request(serverUrl(url: APIUrls.chainInfo), method: APIUrls.chainInfo.method()).responseData { (res) in
             NetworkManager.mapObject(res: res, completetionBlock: completetionBlock)
         }
     }
     
-    func getBlock(completetionBlock: @escaping (ChainInfoModel?, Error?) -> ()) {
-        manager.request(APIUrls.chainInfo, method: APIUrls.chainInfo.method()).responseData { (res) in
+    public func getBlock(completetionBlock: @escaping (ChainInfoModel?, Error?) -> ()) {
+        manager.request(serverUrl(url: APIUrls.chainInfo), method: APIUrls.chainInfo.method()).responseData { (res) in
             Mapper<ChainInfoModel>.mapObject(res: res, completetionBlock: completetionBlock)
         }
     }

@@ -9,10 +9,10 @@
 import Foundation
 import Alamofire
 
-enum APIUrls: URLConvertible {
-    func asURL() throws -> URL {
+enum APIUrls {
+    func stringUrl() -> String {
         switch self {
-        case .chainInfo: return URL(string: "/v1/chain/get_info")!
+        case .chainInfo: return "/v1/chain/get_info"
         }
     }
     
@@ -24,3 +24,6 @@ enum APIUrls: URLConvertible {
     
     case chainInfo
 }
+
+
+
