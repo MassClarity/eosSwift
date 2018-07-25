@@ -1,5 +1,5 @@
 import XCTest
-import eosSwift
+//import eosSwift
 
 class Tests: XCTestCase {
     
