@@ -33,7 +33,7 @@ let keys = Keypair(public: "EOS7T6u2oz32DsmMKU", private: "5KUvbu53Ad4wHLFpaS")
 
 let manager = NetworkManager(url: "https://eos.massclarity.com" , keys: keys)
 
-NetworkManager.shared.fetchChainInfo() { info in
+manager.fetchChainInfo() { info in
     debugPrint(info)
 }
 ```
