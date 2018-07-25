@@ -1,0 +1,11 @@
+use_frameworks!
+
+target 'eosSwift_Example' do
+  pod 'eosSwift', :path => '../'
+
+  target 'eosSwift_Tests' do
+    inherit! :search_paths
+
+    
+  end
+end
